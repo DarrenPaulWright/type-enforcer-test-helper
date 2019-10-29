@@ -1,0 +1,62 @@
+{
+	"name": "type-enforcer-test-helper",
+	"version": "1.0.0",
+	"description": "Test data and helper functions for type-enforcer and addons",
+	"main": "index.js",
+	"scripts": {
+		"patch": "npm version patch -m \"Increment patch version to %s\" && npm publish",
+		"minor": "npm version minor -m \"Increment minor version to %s\" && npm publish",
+		"major": "npm version major -m \"Increment major version to %s\" && npm publish",
+		"docs": "jsdoc2md src/*.js > README.md -t docs/docs.hbs --plugin dmd-readable"
+	},
+	"badges": [
+		{
+			"name": "npm",
+			"image": "https://img.shields.io/npm/v/type-enforcer-test-helper.svg",
+			"url": "https://npmjs.com/package/type-enforcer-test-helper"
+		},
+		{
+			"name": "deps",
+			"image": "https://david-dm.org/darrenpaulwright/type-enforcer-test-helper.svg",
+			"url": "https://david-dm.org/darrenpaulwright/type-enforcer-test-helper"
+		},
+		{
+			"name": "size",
+			"image": "https://packagephobia.now.sh/badge?p=type-enforcer-test-helper",
+			"url": "https://packagephobia.now.sh/result?p=type-enforcer-test-helper"
+		},
+		{
+			"name": "vulnerabilities",
+			"image": "https://snyk.io/test/github/DarrenPaulWright/type-enforcer-test-helper/badge.svg?targetFile=package.json",
+			"url": "https://snyk.io/test/github/DarrenPaulWright/type-enforcer-test-helper?targetFile=package.json"
+		},
+		{
+			"name": "license",
+			"image": "https://img.shields.io/github/license/DarrenPaulWright/type-enforcer-test-helper.svg",
+			"url": "https://npmjs.com/package/type-enforcer-test-helper/LICENSE.md"
+		}
+	],
+	"files": [
+		"/src"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DarrenPaulWright/type-enforcer-test-helper.git"
+	},
+	"keywords": [],
+	"author": "Darren Paul Wright <Darren@DarrenPaulWright.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/DarrenPaulWright/type-enforcer-test-helper/issues"
+	},
+	"homepage": "https://github.com/DarrenPaulWright/type-enforcer-test-helper#readme",
+	"dependencies": {
+		"chai": "^4.2.0",
+		"display-value": "^1.3.0",
+		"object-agent": "^1.2.0"
+	},
+	"devDependencies": {
+		"dmd-readable": "^1.0.0",
+		"jsdoc-to-markdown": "^5.0.2"
+	}
+}
