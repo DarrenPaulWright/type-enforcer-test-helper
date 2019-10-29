@@ -9,14 +9,25 @@ export default function(data, enforcer, enforce, coercer) {
 	});
 
 	it(`should return the setter value when a ${data.name} is provided`, () => {
+		let result;
+		let value1 = data.true[0];
+		let value2 = data.true[1];
+
 		if (data.extraArg) {
-			assert.deepEqual(enforce[data.name](data.true[1], data.extraArg, data.true[0]), data.true[1]);
-			assert.notDeepEqual(enforce[data.name](data.true[1], data.extraArg, data.true[0]), data.true[0]);
+			result = enforce[data.name](value1, data.extraArg, value2);
 		}
 		else {
-			assert.deepEqual(enforce[data.name](data.true[1], data.true[0]), data.true[1]);
-			assert.notDeepEqual(enforce[data.name](data.true[1], data.true[0]), data.true[0]);
+			result = enforce[data.name](value1, value2);
+
+			if (value1.toString) {
+				result = result.toString();
+				value1 = value1.toString();
+				value2 = value2.toString();
+			}
 		}
+
+		assert.deepEqual(result, value1);
+		assert.notDeepEqual(result, value2);
 	});
 
 	if (coercer === Number) {
