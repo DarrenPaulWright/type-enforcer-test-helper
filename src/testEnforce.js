@@ -18,16 +18,10 @@ export default function(data, enforcer, enforce, coercer) {
 		}
 		else {
 			result = enforce[data.name](value1, value2);
-
-			if (value1.toString) {
-				result = result.toString();
-				value1 = value1.toString();
-				value2 = value2.toString();
-			}
 		}
 
-		assert.deepEqual(result, value1);
-		assert.notDeepEqual(result, value2);
+		assert.equal(result, value1);
+		assert.notEqual(result, value2);
 	});
 
 	if (coercer === Number) {
