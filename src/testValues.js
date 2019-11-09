@@ -111,7 +111,7 @@ const coerceNumberFalse = [
 ];
 const coerceObjectTrue = ['{}', '{"test":"test"}'];
 
-export const testValues = [null, undefined].concat(
+export const testValues = [null, undefined, NaN].concat(
 	validArrays,
 	validBooleans,
 	validDates,
@@ -126,8 +126,7 @@ export const testValues = [null, undefined].concat(
 	validSets,
 	validStrings,
 	validWeakMaps,
-	validWeakSets,
-	NaN
+	validWeakSets
 );
 
 export const arrayData = {
