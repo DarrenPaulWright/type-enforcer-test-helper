@@ -30,6 +30,24 @@ export const validSymbols = [Symbol(), Symbol('test')];
 export const validWeakMaps = [new WeakMap(), new WeakMap().set({}, 12)];
 export const validWeakSets = [new WeakSet(), new WeakSet([new TestClass])];
 
+export const testValues = [null, undefined, NaN].concat(
+	validArrays,
+	validBooleans,
+	validDates,
+	validFunctions,
+	validInstances,
+	validIntegers,
+	validFloats,
+	validInfinities,
+	validMaps,
+	validObjects,
+	validRegExps,
+	validSets,
+	validStrings,
+	validWeakMaps,
+	validWeakSets
+);
+
 // the following numeric strings are pulled from https://github.com/minimaxir/big-list-of-naughty-strings
 const coerceInfinity = [
 	'Infinity',
@@ -109,32 +127,15 @@ const coerceNumberFalse = [
 	'1\'000\'000,00',
 	NaN
 ];
+const coerceArrayTrue = ['["test"]', '[]'];
 const coerceObjectTrue = ['{}', '{"test":"test"}'];
-
-export const testValues = [null, undefined, NaN].concat(
-	validArrays,
-	validBooleans,
-	validDates,
-	validFunctions,
-	validInstances,
-	validIntegers,
-	validFloats,
-	validInfinities,
-	validMaps,
-	validObjects,
-	validRegExps,
-	validSets,
-	validStrings,
-	validWeakMaps,
-	validWeakSets
-);
 
 export const arrayData = {
 	value: Array,
 	name: 'array',
 	true: validArrays,
 	false: difference(testValues, validArrays),
-	coerceTrue: ['["test"]', '[]'],
+	coerceTrue: coerceArrayTrue,
 	coerceFalse: difference(testValues, validArrays)
 };
 export const booleanData = {
@@ -179,7 +180,7 @@ export const integerData = {
 };
 export const jsonData = {
 	name: 'json',
-	true: ['[]', '{}', '{"test":"test"}'],
+	true: coerceObjectTrue.concat(coerceArrayTrue, JSON.stringify(testValues)),
 	false: ['json'].concat(validDates, validFunctions, validObjects, validRegExps),
 	coerceTrue: [],
 	coerceFalse: []
