@@ -1,6 +1,6 @@
 {
 	"name": "type-enforcer-test-helper",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Test data and helper functions for type-enforcer and addons",
 	"main": "index.js",
 	"scripts": {
