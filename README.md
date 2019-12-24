@@ -9,7 +9,25 @@
 [![license][license]][license-url]
 
 
-Documentation coming soon.
+<br><a name="multiTest"></a>
+
+## multiTest(settings)
+> Run multiple identical tests over a set of data
+
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| settings | <code>Object</code> |  |  |
+| settings.values | <code>Object</code>, <code>Array</code> |  |  |
+| [settings.values2] | <code>Object</code>, <code>Array</code> |  | Only for eachPair. If not provided, pairs are made within the values array. If provided, pairs are only made with one from each array. |
+| settings.test | <code>function</code> |  |  |
+| [settings.filter] | <code>function</code> |  |  |
+| [settings.message] | <code>function</code> | <code>&#x60;should return ${output} when set to ${input}&#x60;</code> |  |
+| [settings.inputKey] | <code>String</code> |  |  |
+| [settings.outputKey] | <code>String</code> |  |  |
+| [settings.output] | <code>\*</code> |  |  |
+| [settings.eachPair] | <code>Boolean</code> | <code>false</code> | values must be an array, runs tests on every combination of two items from values |
+| [settings.assertion] | <code>String</code> | <code>&#x27;equal&#x27;</code> |  |
 
 
 [npm]: https://img.shields.io/npm/v/type-enforcer-test-helper.svg
