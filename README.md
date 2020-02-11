@@ -1,5 +1,7 @@
 # Type Enforcer Test Helper
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/DarrenPaulWright/type-enforcer-test-helper.svg)](https://greenkeeper.io/)
+
 > Test data and helper functions for type-enforcer and addons
 >
 > [![npm][npm]][npm-url]
