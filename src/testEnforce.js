@@ -21,7 +21,7 @@ export default function(data, enforcer, enforce, coercer) {
 		}
 
 		assert.is(result, value1);
-		assert.equal(result, value2);
+		assert.notIs(result, value2);
 	});
 
 	if (coercer === Number) {

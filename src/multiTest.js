@@ -20,24 +20,29 @@ import { assert } from 'type-enforcer';
  * @arg {String}       [settings.assertion='equal']
  */
 export default (settings) => {
-	const assertion = settings.assertion || 'equal';
+	let assertion = settings.assertion || 'equal';
 
 	let buildSingleMessage;
 	if (settings.message) {
 		buildSingleMessage = settings.message;
 	}
-	else if (settings.assertion === 'true') {
+	else if (assertion === 'true') {
 		buildSingleMessage = (input) => `should return true for ${displayValue(input)}`;
-		settings.assertion = 'equal';
-		settings.output = true;
 	}
-	else if (settings.assertion === 'false') {
+	else if (assertion === 'false') {
 		buildSingleMessage = (input) => `should return false for ${displayValue(input)}`;
-		settings.assertion = 'equal';
-		settings.output = false;
 	}
 	else {
 		buildSingleMessage = (input, output) => `should return ${displayValue(output)} when set to ${input}`;
+	}
+
+	if (assertion === 'true') {
+		assertion = 'equal';
+		settings.output = true;
+	}
+	else if (assertion === 'false') {
+		assertion = 'equal';
+		settings.output = false;
 	}
 
 	const buildDoubleMessage = settings.message || ((input1, input2, output) => {
