@@ -1,6 +1,6 @@
-import { assert } from 'chai';
 import displayValue from 'display-value';
 import { powerset } from 'object-agent';
+import { assert } from 'type-enforcer';
 
 const startCase = (string) => string.split(' ')
 	.map((word) => word.charAt(0).toUpperCase() + word.substring(1))
@@ -62,7 +62,7 @@ export default function(settings, thisMethod, method) {
 				it('should return the init value', () => {
 					const testConstructor = new TestConstructor();
 
-					assert.deepEqual(testConstructor[methodName](), init);
+					assert.equal(testConstructor[methodName](), init);
 				});
 
 				it('should return "this" after a value is set', () => {
@@ -70,7 +70,7 @@ export default function(settings, thisMethod, method) {
 
 					const that = testConstructor[methodName](testItem);
 
-					assert.equal(that, testConstructor);
+					assert.is(that, testConstructor);
 				});
 
 				if (hasGet) {
@@ -79,8 +79,8 @@ export default function(settings, thisMethod, method) {
 
 						testConstructor[methodName](testItem);
 
-						assert.deepEqual(testConstructor[methodName](), init);
-						assert.equal(testConstructor, testContext);
+						assert.equal(testConstructor[methodName](), init);
+						assert.is(testConstructor, testContext);
 					});
 				}
 				else {
@@ -89,7 +89,7 @@ export default function(settings, thisMethod, method) {
 
 						testConstructor[methodName](testItem);
 
-						assert.deepEqual(testConstructor[methodName](), testItem);
+						assert.equal(testConstructor[methodName](), testItem);
 					});
 				}
 
@@ -100,8 +100,8 @@ export default function(settings, thisMethod, method) {
 
 						testConstructor[methodName](testItem);
 
-						assert.deepEqual(testSet, testItem);
-						assert.equal(testConstructor, testContext);
+						assert.equal(testSet, testItem);
+						assert.is(testConstructor, testContext);
 					});
 
 					it('should execute the "set" callback when the value is set to the current value and a second parameter of "true" is provided', () => {
@@ -112,7 +112,7 @@ export default function(settings, thisMethod, method) {
 						testSet = '';
 						testConstructor[methodName](testItem, true);
 
-						assert.deepEqual(testSet, testItem);
+						assert.equal(testSet, testItem);
 					});
 
 					if (!hasGet) {
@@ -124,7 +124,7 @@ export default function(settings, thisMethod, method) {
 							testSet = '';
 							testConstructor[methodName](testItem);
 
-							assert.deepEqual(testSet, '');
+							assert.equal(testSet, '');
 						});
 					}
 				}
@@ -136,8 +136,8 @@ export default function(settings, thisMethod, method) {
 
 						testConstructor[methodName](testItem);
 
-						assert.deepEqual(testBefore, init);
-						assert.equal(testConstructor, testContext);
+						assert.equal(testBefore, init);
+						assert.is(testConstructor, testContext);
 					});
 				}
 
@@ -148,7 +148,7 @@ export default function(settings, thisMethod, method) {
 
 							testConstructor[methodName](undefined);
 
-							assert.deepEqual(testConstructor[methodName](), undefined);
+							assert.equal(testConstructor[methodName](), undefined);
 						});
 					}
 					else if (hasSet && init) {
@@ -158,7 +158,7 @@ export default function(settings, thisMethod, method) {
 
 							testConstructor[methodName](undefined);
 
-							assert.deepEqual(testSet, undefined);
+							assert.equal(testSet, undefined);
 						});
 					}
 					else if (hasBefore && !hasGet && init) {
@@ -169,7 +169,7 @@ export default function(settings, thisMethod, method) {
 							testConstructor[methodName](undefined);
 							testConstructor[methodName](testItem);
 
-							assert.deepEqual(testBefore, undefined);
+							assert.equal(testBefore, undefined);
 						});
 					}
 					else if (hasBefore && hasGet && init) {
@@ -179,7 +179,7 @@ export default function(settings, thisMethod, method) {
 
 							testConstructor[methodName](undefined);
 
-							assert.deepEqual(testBefore, init);
+							assert.equal(testBefore, init);
 						});
 					}
 				}
@@ -191,7 +191,7 @@ export default function(settings, thisMethod, method) {
 
 							testConstructor[methodName](item.value);
 
-							assert.deepEqual(testConstructor[methodName](), item.coerced);
+							assert.equal(testConstructor[methodName](), item.coerced);
 						});
 					}
 					else if (hasSet) {
@@ -201,7 +201,7 @@ export default function(settings, thisMethod, method) {
 
 							testConstructor[methodName](item.value);
 
-							assert.deepEqual(testSet, item.coerced);
+							assert.equal(testSet, item.coerced);
 						});
 					}
 				});
@@ -213,8 +213,8 @@ export default function(settings, thisMethod, method) {
 
 			testConstructor[TEST_METHOD](testItem);
 
-			assert.deepEqual(testConstructor[TEST_METHOD](), testItem);
-			assert.deepEqual(testConstructor[TEST_METHOD + '2'](), init);
+			assert.equal(testConstructor[TEST_METHOD](), testItem);
+			assert.equal(testConstructor[TEST_METHOD + '2'](), init);
 		});
 	};
 
@@ -276,7 +276,7 @@ export default function(settings, thisMethod, method) {
 	};
 
 	it('should exist in the exported "method" object', () => {
-		assert.deepEqual(thisMethod, method[settings.name]);
+		assert.equal(thisMethod, method[settings.name]);
 	});
 
 	describe('(prototype)', () => {
@@ -362,7 +362,7 @@ export default function(settings, thisMethod, method) {
 
 				testConstructor.testMethod(falseValue);
 
-				assert.deepEqual(testConstructor.testMethod(), settings.true[0]);
+				assert.equal(testConstructor.testMethod(), settings.true[0]);
 			});
 		});
 	});
@@ -401,7 +401,7 @@ export default function(settings, thisMethod, method) {
 
 					testConstructor.testMethod(value);
 
-					assert.notEqual(testConstructor.testMethod(), undefined);
+					assert.notIs(testConstructor.testMethod(), undefined);
 				});
 			});
 		});
@@ -421,7 +421,7 @@ export default function(settings, thisMethod, method) {
 
 					testConstructor.testMethod(value);
 
-					assert.equal(testConstructor.testMethod(), undefined);
+					assert.is(testConstructor.testMethod(), undefined);
 				});
 			});
 		});

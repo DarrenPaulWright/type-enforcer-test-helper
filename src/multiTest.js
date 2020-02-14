@@ -1,6 +1,6 @@
-import { assert } from 'chai';
 import displayValue from 'display-value';
 import { forOwn, mix } from 'object-agent';
+import { assert } from 'type-enforcer';
 
 /**
  * Run multiple identical tests over a set of data
@@ -26,11 +26,15 @@ export default (settings) => {
 	if (settings.message) {
 		buildSingleMessage = settings.message;
 	}
-	else if (settings.assertion === 'isTrue') {
+	else if (settings.assertion === 'true') {
 		buildSingleMessage = (input) => `should return true for ${displayValue(input)}`;
+		settings.assertion = 'equal';
+		settings.output = true;
 	}
-	else if (settings.assertion === 'isFalse') {
+	else if (settings.assertion === 'false') {
 		buildSingleMessage = (input) => `should return false for ${displayValue(input)}`;
+		settings.assertion = 'equal';
+		settings.output = false;
 	}
 	else {
 		buildSingleMessage = (input, output) => `should return ${displayValue(output)} when set to ${input}`;

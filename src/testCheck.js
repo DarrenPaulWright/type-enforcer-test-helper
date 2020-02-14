@@ -1,9 +1,9 @@
-import { assert } from 'chai';
+import { assert } from 'type-enforcer';
 import multiTest from './multiTest';
 
 export default function(data, isType, is) {
 	it('should exist in the exported "is" object', () => {
-		assert.deepEqual(isType, is[data.name]);
+		assert.equal(isType, is[data.name]);
 	});
 
 	multiTest({
@@ -11,7 +11,7 @@ export default function(data, isType, is) {
 		test(value) {
 			return isType(value);
 		},
-		assertion: 'isTrue'
+		assertion: 'true'
 	});
 
 	multiTest({
@@ -19,7 +19,7 @@ export default function(data, isType, is) {
 		test(value) {
 			return isType(value);
 		},
-		assertion: 'isFalse'
+		assertion: 'false'
 	});
 
 	multiTest({
@@ -27,7 +27,7 @@ export default function(data, isType, is) {
 		test(value) {
 			return isType(value);
 		},
-		assertion: 'isFalse'
+		assertion: 'false'
 	});
 
 	describe('coerce', () => {
@@ -36,7 +36,7 @@ export default function(data, isType, is) {
 			test(value) {
 				return isType(value, true);
 			},
-			assertion: 'isTrue'
+			assertion: 'true'
 		});
 
 		multiTest({
@@ -44,7 +44,7 @@ export default function(data, isType, is) {
 			test(value) {
 				return isType(value, true);
 			},
-			assertion: 'isTrue'
+			assertion: 'true'
 		});
 
 		multiTest({
@@ -52,7 +52,7 @@ export default function(data, isType, is) {
 			test(value) {
 				return isType(value, true);
 			},
-			assertion: 'isFalse'
+			assertion: 'false'
 		});
 	});
 }

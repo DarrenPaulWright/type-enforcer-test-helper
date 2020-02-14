@@ -1,11 +1,11 @@
-import { assert } from 'chai';
 import displayValue from 'display-value';
+import { assert } from 'type-enforcer';
 import multiTest from './multiTest';
 import { TestClass, testTypes } from './testValues';
 
 export default function(data, enforcer, enforce, coercer) {
 	it('should exist in the exported "enforce" object', () => {
-		assert.deepEqual(enforcer, enforce[data.name]);
+		assert.equal(enforcer, enforce[data.name]);
 	});
 
 	it(`should return the setter value when a ${data.name} is provided`, () => {
@@ -20,16 +20,16 @@ export default function(data, enforcer, enforce, coercer) {
 			result = enforce[data.name](value1, value2);
 		}
 
-		assert.equal(result, value1);
-		assert.notEqual(result, value2);
+		assert.is(result, value1);
+		assert.equal(result, value2);
 	});
 
 	if (coercer === Number) {
 		it('should return the min value when a integer less than the min value is provided', () => {
-			assert.deepEqual(enforce[data.name](-12, 11, false, 0, 5), 0);
+			assert.equal(enforce[data.name](-12, 11, false, 0, 5), 0);
 		});
 		it('should return the max value when a integer greater than the max value is provided', () => {
-			assert.deepEqual(enforce[data.name](12, 11, false, 0, 5), 5);
+			assert.equal(enforce[data.name](12, 11, false, 0, 5), 5);
 		});
 	}
 
@@ -48,7 +48,7 @@ export default function(data, enforcer, enforce, coercer) {
 		},
 		inputKey: 'input',
 		outputKey: 'output',
-		assertion: 'deepEqual'
+		assertion: 'equal'
 	});
 
 	describe('coerce', () => {
@@ -68,7 +68,7 @@ export default function(data, enforcer, enforce, coercer) {
 				},
 				inputKey: 'input',
 				outputKey: 'output',
-				assertion: 'deepEqual'
+				assertion: 'equal'
 			});
 		}
 
@@ -81,7 +81,7 @@ export default function(data, enforcer, enforce, coercer) {
 				return enforce[data.name](value, 'testAlt', true);
 			},
 			output: 'testAlt',
-			assertion: 'deepEqual'
+			assertion: 'equal'
 		});
 	});
 
@@ -90,10 +90,10 @@ export default function(data, enforcer, enforce, coercer) {
 			data.true.forEach((testItem) => {
 				it(`should return the default value when ${displayValue(testItem)} is provided`, () => {
 					if (data.extraArg) {
-						assert.deepEqual(enforce[data.name](testItem, data.extraArg, data.true[0]), data.true[0]);
+						assert.equal(enforce[data.name](testItem, data.extraArg, data.true[0]), data.true[0]);
 					}
 					else {
-						assert.deepEqual(enforce[data.name](testItem, data.true[0]), data.true[0]);
+						assert.equal(enforce[data.name](testItem, data.true[0]), data.true[0]);
 					}
 				});
 			});
@@ -103,29 +103,29 @@ export default function(data, enforcer, enforce, coercer) {
 	if (data.name !== 'instanceOf') {
 		it('should return the default value when an instance is provided', () => {
 			if (data.extraArg) {
-				assert.deepEqual(enforce[data.name](new TestClass(), data.extraArg, data.true[0]), data.true[0]);
+				assert.equal(enforce[data.name](new TestClass(), data.extraArg, data.true[0]), data.true[0]);
 			}
 			else {
-				assert.deepEqual(enforce[data.name](new TestClass(), data.true[0]), data.true[0]);
+				assert.equal(enforce[data.name](new TestClass(), data.true[0]), data.true[0]);
 			}
 		});
 	}
 
 	it('should return the default value when undefined is provided', () => {
 		if (data.extraArg) {
-			assert.deepEqual(enforce[data.name](undefined, data.extraArg, data.true[0]), data.true[0]);
+			assert.equal(enforce[data.name](undefined, data.extraArg, data.true[0]), data.true[0]);
 		}
 		else {
-			assert.deepEqual(enforce[data.name](undefined, data.true[0]), data.true[0]);
+			assert.equal(enforce[data.name](undefined, data.true[0]), data.true[0]);
 		}
 	});
 
 	it('should return the default value when null is provided', () => {
 		if (data.extraArg) {
-			assert.deepEqual(enforce[data.name](null, data.extraArg, data.true[0]), data.true[0]);
+			assert.equal(enforce[data.name](null, data.extraArg, data.true[0]), data.true[0]);
 		}
 		else {
-			assert.deepEqual(enforce[data.name](null, data.true[0]), data.true[0]);
+			assert.equal(enforce[data.name](null, data.true[0]), data.true[0]);
 		}
 	});
 };
