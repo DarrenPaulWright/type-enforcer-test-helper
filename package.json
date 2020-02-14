@@ -4,11 +4,13 @@
 	"description": "Test data and helper functions for type-enforcer and addons",
 	"main": "index.js",
 	"scripts": {
+		"clean": "rm -rf node_modules && del /f package-lock.json && npm install",
 		"test": "",
 		"patch": "npm version patch && npm publish",
 		"minor": "npm version minor && npm publish",
 		"major": "npm version major && npm publish",
 		"preversion": "npm test && npm run docs && git add --all && git diff --staged --quiet || git commit -m \"Updating docs\"",
+		"postversion": "npm publish",
 		"postpublish": "git push --follow-tags",
 		"deps": "ncu -u && npm install",
 		"deps-commit": "npm run deps && git add --all && git diff --staged --quiet || git commit -m \"Updating dependencies\"",

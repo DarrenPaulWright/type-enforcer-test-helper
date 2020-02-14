@@ -23,6 +23,9 @@ export const validMaps = [new Map(), new Map().set('test', 12)];
 export const validObjects = [{}, {
 	test1: 1
 }, new Object(), Object()];
+export const validPromises = [new Promise(() => {
+}), Promise.all(new Promise(() => {
+}))];
 export const validRegExps = [/asdf/g, new RegExp('test 2'), RegExp()];
 export const validSets = [new Set(), new Set([1, 2])];
 export const validStrings = ['test', '', new String('test2'), String('test3')];
@@ -41,6 +44,7 @@ export const testValues = [null, undefined, NaN].concat(
 	validInfinities,
 	validMaps,
 	validObjects,
+	validPromises,
 	validRegExps,
 	validSets,
 	validStrings,
@@ -219,6 +223,14 @@ export const objectData = {
 	coerceTrue: coerceObjectTrue,
 	coerceFalse: validStrings
 };
+export const promiseData = {
+	value: Promise,
+	name: 'promise',
+	true: validPromises,
+	false: difference(testValues, validPromises),
+	coerceTrue: validFunctions,
+	coerceFalse: difference(testValues, validFunctions, validPromises)
+};
 export const regExpData = {
 	value: RegExp,
 	name: 'regExp',
@@ -279,6 +291,7 @@ export const testTypes = [
 	numberData,
 	mapData,
 	objectData,
+	promiseData,
 	regExpData,
 	setData,
 	stringData,
