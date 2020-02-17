@@ -1,15 +1,24 @@
 import { assert } from 'type-enforcer';
 import multiTest from './multiTest';
 
-export default function(data, isType, is) {
+/**
+ * Test a check function (isArray, isBoolean, etc.)
+ *
+ * @function testCheck
+ *
+ * @arg {Object} data - A data object (arrayData, booleanData, etc.)
+ * @arg {Function} check - The function to test
+ * @arg {Object} is - An object that includes this function
+ */
+export default function(data, check, is) {
 	it('should exist in the exported "is" object', () => {
-		assert.equal(isType, is[data.name]);
+		assert.equal(check, is[data.name]);
 	});
 
 	multiTest({
 		values: data.true,
 		test(value) {
-			return isType(value);
+			return check(value);
 		},
 		assertion: 'true'
 	});
@@ -17,7 +26,7 @@ export default function(data, isType, is) {
 	multiTest({
 		values: data.false,
 		test(value) {
-			return isType(value);
+			return check(value);
 		},
 		assertion: 'false'
 	});
@@ -25,7 +34,7 @@ export default function(data, isType, is) {
 	multiTest({
 		values: data.coerceTrue,
 		test(value) {
-			return isType(value);
+			return check(value);
 		},
 		assertion: 'false'
 	});
@@ -34,7 +43,7 @@ export default function(data, isType, is) {
 		multiTest({
 			values: data.true,
 			test(value) {
-				return isType(value, true);
+				return check(value, true);
 			},
 			assertion: 'true'
 		});
@@ -42,7 +51,7 @@ export default function(data, isType, is) {
 		multiTest({
 			values: data.coerceTrue,
 			test(value) {
-				return isType(value, true);
+				return check(value, true);
 			},
 			assertion: 'true'
 		});
@@ -50,7 +59,7 @@ export default function(data, isType, is) {
 		multiTest({
 			values: data.coerceFalse,
 			test(value) {
-				return isType(value, true);
+				return check(value, true);
 			},
 			assertion: 'false'
 		});

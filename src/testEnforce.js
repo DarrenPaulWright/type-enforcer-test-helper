@@ -1,8 +1,19 @@
 import displayValue from 'display-value';
 import { assert } from 'type-enforcer';
+import TestClass from './data/TestClass.js';
+import { testTypes } from './data/testData.js';
 import multiTest from './multiTest';
-import { TestClass, testTypes } from './testValues';
 
+/**
+ * Test an enforce function (enforceArray, enforceBoolean, etc.)
+ *
+ * @function testEnforce
+ *
+ * @arg {Object} data - A data object (arrayData, booleanData, etc.)
+ * @arg {Function} enforcer - The function to test
+ * @arg {Object} enforce - An object that includes this function
+ * @arg {Function} coercer - A function that does a coercion just like this function
+ */
 export default function(data, enforcer, enforce, coercer) {
 	it('should exist in the exported "enforce" object', () => {
 		assert.equal(enforcer, enforce[data.name]);
@@ -85,9 +96,11 @@ export default function(data, enforcer, enforce, coercer) {
 		});
 	});
 
-	testTypes.forEach((data) => {
-		if (data.name && !([data.name].concat(data.skip).includes(data.name))) {
-			data.true.forEach((testItem) => {
+	testTypes.forEach((typesData) => {
+		if (typesData.name && !([typesData.name].concat(typesData.skip).includes(data.name))) {
+
+			typesData.true.forEach((testItem) => {
+
 				it(`should return the default value when ${displayValue(testItem)} is provided`, () => {
 					if (data.extraArg) {
 						assert.equal(enforce[data.name](testItem, data.extraArg, data.true[0]), data.true[0]);

@@ -23,6 +23,24 @@ const beforeSymbol = Symbol();
 const setSymbol = Symbol();
 const getSymbol = Symbol();
 
+/**
+ * Test a chainable method function (methodArray, methodBoolean, etc.)
+ *
+ * @function testMethod
+ *
+ * @arg {Object} settings
+ * @arg {Object} settings.name - The name used in type-enforcer namespaces for this type
+ * @arg {Object} settings.init - The expected value returned by the method immediately after instantiation
+ * @arg {Object} settings.extraProps - An object of extra properties to be passed in when the method is instantiated
+ * @arg {Array} settings.true - An array of values that are valid for this method
+ * @arg {Array} settings.false - An array of values that are NOT valid for this method
+ * @arg {Array|false} [settings.coerce]
+ * @arg {*} settings.coerce[].value
+ * @arg {*} settings.coerce[].coerced
+ * @arg {Array} settings.coerceTrue - An array of values that are coercible by this method
+ * @arg {Function} thisMethod - The function to test
+ * @arg {Object} method - An object that includes this function
+ */
 export default function(settings, thisMethod, method) {
 	let testBefore = '';
 	let testSet = '';
