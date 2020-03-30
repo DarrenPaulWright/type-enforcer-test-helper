@@ -62,8 +62,8 @@
 	},
 	"homepage": "https://github.com/DarrenPaulWright/type-enforcer-test-helper#readme",
 	"dependencies": {
-		"display-value": "^1.6.1",
-		"object-agent": "^1.4.9",
+		"display-value": "^1.7.2",
+		"object-agent": "^1.4.10",
 		"type-enforcer": "^1.1.1"
 	},
 	"devDependencies": {
