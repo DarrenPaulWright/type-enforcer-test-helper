@@ -1,5 +1,5 @@
 import { assert } from 'type-enforcer';
-import multiTest from './multiTest';
+import multiTest from './multiTest.js';
 
 /**
  * Test a check function (isArray, isBoolean, etc.)

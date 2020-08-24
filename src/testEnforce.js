@@ -2,7 +2,7 @@ import displayValue from 'display-value';
 import { assert } from 'type-enforcer';
 import TestClass from './data/TestClass.js';
 import { testTypes } from './data/testData.js';
-import multiTest from './multiTest';
+import multiTest from './multiTest.js';
 
 /**
  * Test an enforce function (enforceArray, enforceBoolean, etc.)
