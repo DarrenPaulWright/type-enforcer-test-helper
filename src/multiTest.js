@@ -2,39 +2,40 @@ import displayValue from 'display-value';
 import { forOwn, mix } from 'object-agent';
 import { assert } from 'type-enforcer';
 
+const getMessage = (settings, assertion) => {
+	if (settings.message) {
+		return settings.message;
+	}
+	if (assertion === 'true') {
+		return (input) => `should return true for ${displayValue(input)}`;
+	}
+	if (assertion === 'false') {
+		return (input) => `should return false for ${displayValue(input)}`;
+	}
+
+	return (input, output) => `should return ${displayValue(output)} when set to ${input}`;
+};
+
 /**
- * Run multiple identical tests over a set of data
+ * Run multiple identical tests over a set of data.
  *
  * @function multiTest
  *
- * @arg {Object}       settings
- * @arg {Object|Array} settings.values
- * @arg {Object|Array} [settings.values2] - Only for eachPair. If not provided, pairs are made within the values array. If provided, pairs are only made with one from each array.
- * @arg {Function}     settings.test
- * @arg {Function}     [settings.filter]
- * @arg {Function}     [settings.message=`should return ${output} when set to ${input}`]
- * @arg {String}       [settings.inputKey]
- * @arg {String}       [settings.outputKey]
- * @arg {*}            [settings.output]
- * @arg {Boolean}      [settings.eachPair=false] - values must be an array, runs tests on every combination of two items from values
- * @arg {String}       [settings.assertion='equal']
+ * @param {object}       settings - Settings object.
+ * @param {object | Array} settings.values - The values to run tests against.
+ * @param {object | Array} [settings.values2] - Only for eachPair. If not provided, pairs are made within the values array. If provided, pairs are only made with one from each array.
+ * @param {Function}     settings.test - The test to run against each value. Provided one or two args (two args if eachPair is true). Each arg is a value from values or values2. Should not call assert, but return a value to be asserted against configured output.
+ * @param {Function}     [settings.filter] - Provided one or two args (two args if eachPair is true). Each arg is a value from values or values2. Return a truthy value to run the test, falsey to skip the test.
+ * @param {Function}     [settings.message] - Provides two or three params, the input value(s) and the expected output value. Must return a string. It is recommended to use the display-value library on values for readability.
+ * @param {string}       [settings.inputKey] - If values is an array of objects, this specifies which key to get the input value from.
+ * @param {string}       [settings.outputKey] - If values is an array of objects, this specifies which key to get the expected output value from.
+ * @param {*}            [settings.output] - The expected output value of all tests.
+ * @param {boolean}      [settings.eachPair=false] - Values must be an array, runs tests on every combination of two items from values.
+ * @param {string}       [settings.assertion='equal'] - The type-enforcer assert function to run against all tests.
  */
 export default (settings) => {
 	let assertion = settings.assertion || 'equal';
-
-	let buildSingleMessage;
-	if (settings.message) {
-		buildSingleMessage = settings.message;
-	}
-	else if (assertion === 'true') {
-		buildSingleMessage = (input) => `should return true for ${displayValue(input)}`;
-	}
-	else if (assertion === 'false') {
-		buildSingleMessage = (input) => `should return false for ${displayValue(input)}`;
-	}
-	else {
-		buildSingleMessage = (input, output) => `should return ${displayValue(output)} when set to ${input}`;
-	}
+	const buildSingleMessage = getMessage(settings, assertion);
 
 	if (assertion === 'true') {
 		assertion = 'equal';
@@ -82,13 +83,11 @@ export default (settings) => {
 				testSingleValue(value, value[settings.outputKey], value);
 			}
 		}
+		else if ('inputKey' in settings) {
+			testSingleValue(value[settings.inputKey], undefined, value);
+		}
 		else {
-			if ('inputKey' in settings) {
-				testSingleValue(value[settings.inputKey], undefined, value);
-			}
-			else {
-				testSingleValue(value, undefined, value);
-			}
+			testSingleValue(value, undefined, value);
 		}
 	};
 
@@ -101,13 +100,11 @@ export default (settings) => {
 				testDoubleValue(value1, value2, settings.output, value1, value2);
 			}
 		}
+		else if ('inputKey' in settings) {
+			testDoubleValue(value1[settings.inputKey], value2[settings.inputKey], undefined, value1, value2);
+		}
 		else {
-			if ('inputKey' in settings) {
-				testDoubleValue(value1[settings.inputKey], value2[settings.inputKey], undefined, value1, value2);
-			}
-			else {
-				testDoubleValue(value1, value2, undefined, value1, value2);
-			}
+			testDoubleValue(value1, value2, undefined, value1, value2);
 		}
 	};
 

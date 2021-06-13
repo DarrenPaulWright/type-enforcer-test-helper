@@ -3,7 +3,7 @@ import { powerset } from 'object-agent';
 import { assert } from 'type-enforcer';
 
 const startCase = (string) => string.split(' ')
-	.map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+	.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
 	.join(' ');
 
 const TEST_METHOD = 'testMethod';
@@ -24,48 +24,49 @@ const setSymbol = Symbol();
 const getSymbol = Symbol();
 
 /**
- * Test a chainable method function (methodArray, methodBoolean, etc.)
+ * Test a chainable method function (methodArray, methodBoolean, etc.).
  *
  * @function testMethod
  *
- * @arg {Object} settings
- * @arg {Object} settings.name - The name used in type-enforcer namespaces for this type
- * @arg {Object} settings.init - The expected value returned by the method immediately after instantiation
- * @arg {Object} settings.extraProps - An object of extra properties to be passed in when the method is instantiated
- * @arg {Array} settings.true - An array of values that are valid for this method
- * @arg {Array} settings.false - An array of values that are NOT valid for this method
- * @arg {Array|false} [settings.coerce]
- * @arg {*} settings.coerce[].value
- * @arg {*} settings.coerce[].coerced
- * @arg {Array} settings.coerceTrue - An array of values that are coercible by this method
- * @arg {Function} thisMethod - The function to test
- * @arg {Object} method - An object that includes this function
+ * @param {object} settings - Settings object.
+ * @param {object} settings.name - The name used in type-enforcer namespaces for this type.
+ * @param {object} settings.init - The expected value returned by the method immediately after instantiation.
+ * @param {object} settings.extraProps - An object of extra properties to be passed in when the method is instantiated.
+ * @param {Array} settings.true - An array of values that are valid for this method.
+ * @param {Array} settings.false - An array of values that are NOT valid for this method.
+ * @param {Array|false} [settings.coerce] - An array of objects with values that can be coerced by this method.
+ * @param {*} settings.coerce[].value - The value to be coerced.
+ * @param {*} settings.coerce[].coerced - The expected result of coercion.
+ * @param {Array} settings.coerceTrue - Alternatively, an array of values that are coercible by this method.
+ * @param {Function} thisMethod - The function to test.
+ * @param {object} method - An object that includes this function.
  */
 export default function(settings, thisMethod, method) {
 	let testBefore = '';
 	let testSet = '';
-	let testContext;
+	let self = this;
+
 	const testBeforeCallback = function(oldValue) {
-		testContext = this;
+		self = this;
 		testBefore = processOutput(oldValue, settings.extraProps);
 	};
 	const testSetCallback = function(newValue) {
-		testContext = this;
+		self = this;
 		testSet = processOutput(newValue, settings.extraProps);
 	};
 	const testGetCallback = function() {
-		testContext = this;
+		self = this;
 		return settings.init;
 	};
 	const testGetCallbackWithTestItem = function() {
-		testContext = this;
+		self = this;
 		return settings.true[0];
 	};
 
 	beforeEach(() => {
 		testBefore = null;
 		testSet = null;
-		testContext = null;
+		self = null; // eslint-disable-line consistent-this
 	});
 
 	const runTests = (TestConstructor, init, testItem, coerce) => {
@@ -98,7 +99,7 @@ export default function(settings, thisMethod, method) {
 						testConstructor[methodName](testItem);
 
 						assert.equal(testConstructor[methodName](), init);
-						assert.is(testConstructor, testContext);
+						assert.is(testConstructor, self);
 					});
 				}
 				else {
@@ -119,7 +120,7 @@ export default function(settings, thisMethod, method) {
 						testConstructor[methodName](testItem);
 
 						assert.equal(testSet, testItem);
-						assert.is(testConstructor, testContext);
+						assert.is(testConstructor, self);
 					});
 
 					it('should execute the "set" callback when the value is set to the current value and a second parameter of "true" is provided', () => {
@@ -155,51 +156,37 @@ export default function(settings, thisMethod, method) {
 						testConstructor[methodName](testItem);
 
 						assert.equal(testBefore, init);
-						assert.is(testConstructor, testContext);
+						assert.is(testConstructor, self);
 					});
 				}
 
 				if (hasOther) {
-					if (!hasGet) {
-						it('should be able to be set to other', () => {
-							const testConstructor = new TestConstructor();
+					it('should be able to be set to other', () => {
+						const testConstructor = new TestConstructor();
 
-							testConstructor[methodName](undefined);
+						testConstructor[methodName](undefined);
 
+						if (!hasGet && !hasBefore) {
 							assert.equal(testConstructor[methodName](), undefined);
-						});
-					}
-					else if (hasSet && init) {
-						it('should be able to be set to other', () => {
-							const testConstructor = new TestConstructor();
+						}
+						else if (hasSet && init) {
 							testSet = '';
 
-							testConstructor[methodName](undefined);
-
 							assert.equal(testSet, undefined);
-						});
-					}
-					else if (hasBefore && !hasGet && init) {
-						it('should be able to be set to other', () => {
-							const testConstructor = new TestConstructor();
+						}
+						else if (hasBefore && !hasGet && init) {
 							testBefore = '';
 
-							testConstructor[methodName](undefined);
 							testConstructor[methodName](testItem);
 
 							assert.equal(testBefore, undefined);
-						});
-					}
-					else if (hasBefore && hasGet && init) {
-						it('should be able to be set to other', () => {
-							const testConstructor = new TestConstructor();
+						}
+						else if (hasBefore && hasGet && init) {
 							testBefore = '';
 
-							testConstructor[methodName](undefined);
-
 							assert.equal(testBefore, init);
-						});
-					}
+						}
+					});
 				}
 
 				coerce.forEach((item) => {
@@ -273,15 +260,15 @@ export default function(settings, thisMethod, method) {
 		}
 	};
 
-	const addMethodsTo = (applyTo, extraProps = {}, isReassigned, isSymbol) => {
+	const addMethodsTo = (applyTo, extraProperties = {}, isReassigned = false, isSymbol = false) => {
 		everyMethodVariant.forEach((methodData) => {
 			const options = {
 				...settings.extraProps,
-				...extraProps
+				...extraProperties
 			};
 
 			methodData.options.forEach((option) => {
-				options[option] = getOptionCallback(option, extraProps.init, isReassigned, isSymbol);
+				options[option] = getOptionCallback(option, extraProperties.init, isReassigned, isSymbol);
 			});
 
 			applyTo[methodData.name] = method[settings.name](options);
@@ -289,7 +276,7 @@ export default function(settings, thisMethod, method) {
 
 		applyTo[TEST_METHOD + '2'] = method[settings.name]({
 			...settings.extraProps,
-			...extraProps
+			...extraProperties
 		});
 	};
 
@@ -339,9 +326,9 @@ export default function(settings, thisMethod, method) {
 		}
 
 		Object.assign(TestConstructor1.prototype, {
-			testBeforeCallback: testBeforeCallback,
-			testSetCallback: testSetCallback,
-			testGetCallback: testGetCallback
+			testBeforeCallback,
+			testSetCallback,
+			testGetCallback
 		});
 
 		addMethodsTo(TestConstructor1.prototype, {}, true);
@@ -444,4 +431,4 @@ export default function(settings, thisMethod, method) {
 			});
 		});
 	}
-};
+}

@@ -5,14 +5,14 @@ import { testTypes } from './data/testData.js';
 import multiTest from './multiTest.js';
 
 /**
- * Test an enforce function (enforceArray, enforceBoolean, etc.)
+ * Test an enforce function (enforceArray, enforceBoolean, etc.).
  *
  * @function testEnforce
  *
- * @arg {Object} data - A data object (arrayData, booleanData, etc.)
- * @arg {Function} enforcer - The function to test
- * @arg {Object} enforce - An object that includes this function
- * @arg {Function} coercer - A function that does a coercion just like this function
+ * @param {object} data - A data object (arrayData, booleanData, etc.).
+ * @param {Function} enforcer - The function to test.
+ * @param {object} enforce - An object that includes this function.
+ * @param {Function} coercer - A function that does a coercion just like this function.
  */
 export default function(data, enforcer, enforce, coercer) {
 	it('should exist in the exported "enforce" object', () => {
@@ -20,9 +20,9 @@ export default function(data, enforcer, enforce, coercer) {
 	});
 
 	it(`should return the setter value when a ${data.name} is provided`, () => {
-		let result;
-		let value1 = data.true[0];
-		let value2 = data.true[1];
+		let result = null;
+		const value1 = data.true[0];
+		const value2 = data.true[1];
 
 		if (data.extraArg) {
 			result = enforce[data.name](value1, data.extraArg, value2);
@@ -97,10 +97,9 @@ export default function(data, enforcer, enforce, coercer) {
 	});
 
 	testTypes.forEach((typesData) => {
-		if (typesData.name && !([typesData.name].concat(typesData.skip).includes(data.name))) {
-
+		if (typesData.name && !([typesData.name].concat(typesData.skip)
+			.includes(data.name))) {
 			typesData.true.forEach((testItem) => {
-
 				it(`should return the default value when ${displayValue(testItem)} is provided`, () => {
 					if (data.extraArg) {
 						assert.equal(enforce[data.name](testItem, data.extraArg, data.true[0]), data.true[0]);
@@ -141,4 +140,4 @@ export default function(data, enforcer, enforce, coercer) {
 			assert.equal(enforce[data.name](null, data.true[0]), data.true[0]);
 		}
 	});
-};
+}

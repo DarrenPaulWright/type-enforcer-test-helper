@@ -1,4 +1,4 @@
 export default (array1, ...args) => {
-	let diffArrays = [].concat(...args);
+	const diffArrays = [].concat(...args);
 	return array1.filter((item) => !diffArrays.includes(item));
 };

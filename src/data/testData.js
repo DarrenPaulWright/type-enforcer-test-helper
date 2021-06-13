@@ -38,9 +38,9 @@ import {
 /**
  * A data set for testing Arrays
  *
- * @constant {Object} arrayData
+ * @constant {object} arrayData
  * @property {Function} value - Array constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validArrays](testValues.md#validArrays)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validArrays
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -58,9 +58,9 @@ export const arrayData = {
 /**
  * A data set for testing Booleans
  *
- * @constant {Object} booleanData
+ * @constant {object} booleanData
  * @property {Function} value - Boolean constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validBooleans](testValues.md#validBooleans)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validBooleans
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -78,9 +78,9 @@ export const booleanData = {
 /**
  * A data set for testing Dates
  *
- * @constant {Object} dateData
+ * @constant {object} dateData
  * @property {Function} value - Date constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validDates](testValues.md#validDates)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validDates
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -98,9 +98,9 @@ export const dateData = {
 /**
  * A data set for testing Functions
  *
- * @constant {Object} functionData
+ * @constant {object} functionData
  * @property {Function} value - Function constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validFunctions](testValues.md#validFunctions)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validFunctions
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -118,9 +118,9 @@ export const functionData = {
 /**
  * A data set for testing instanceOf
  *
- * @constant {Object} instanceData
+ * @constant {object} instanceData
  * @property {Function} value - [TestClass](TestClass.md)
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validInstances](testValues.md#validInstances)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validInstances
  * @property {Array} coerceTrue - Included for consistency
@@ -138,8 +138,8 @@ export const instanceData = {
 /**
  * A data set for testing integers
  *
- * @constant {Object} integerData
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @constant {object} integerData
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} skip - The "name" property of other test objects that will produce false negatives if tested against this objects data
  * @property {Array} true - [validIntegers](testValues.md#validIntegers)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validIntegers and validInfinities
@@ -158,8 +158,8 @@ export const integerData = {
 /**
  * A data set for testing JSON
  *
- * @constant {Object} jsonData
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @constant {object} jsonData
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - Values that don't throw when passed through JSON.parse()
  * @property {Array} false - Values that DO throw when passed through JSON.parse()
  * @property {Array} coerceTrue - Included for consistency
@@ -176,8 +176,8 @@ export const jsonData = {
 /**
  * A data set for testing integers
  *
- * @constant {Object} floatData
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @constant {object} floatData
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} skip - The "name" property of other test objects that will produce false negatives if tested against this objects data
  * @property {Array} true - [validFloats](testValues.md#validFloats)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validFloats
@@ -196,9 +196,9 @@ export const floatData = {
 /**
  * A data set for testing numbers
  *
- * @constant {Object} numberData
+ * @constant {object} numberData
  * @property {Function} value - Number constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} skip - The "name" property of other test objects that will produce false negatives if tested against this objects data
  * @property {Array} true - [validFloats](testValues.md#validFloats)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validFloats
@@ -218,9 +218,9 @@ export const numberData = {
 /**
  * A data set for testing Maps
  *
- * @constant {Object} mapData
+ * @constant {object} mapData
  * @property {Function} value - Map constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validMaps](testValues.md#validMaps)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validMaps
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -239,9 +239,9 @@ export const mapData = {
 /**
  * A data set for testing plain Objects
  *
- * @constant {Object} objectData
+ * @constant {object} objectData
  * @property {Function} value - Object constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validObjects](testValues.md#validObjects)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validObjects
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -259,9 +259,9 @@ export const objectData = {
 /**
  * A data set for testing Promises
  *
- * @constant {Object} promiseData
+ * @constant {object} promiseData
  * @property {Function} value - Promise constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validPromises](testValues.md#validPromises)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validPromises
  * @property {Array} coerceTrue - [validFunctions](testValues.md#validFunctions)
@@ -279,9 +279,9 @@ export const promiseData = {
 /**
  * A data set for testing RegExps
  *
- * @constant {Object} regExpData
+ * @constant {object} regExpData
  * @property {Function} value - RegExp constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validRegExps](testValues.md#validRegExps)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validRegExps
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -299,9 +299,9 @@ export const regExpData = {
 /**
  * A data set for testing Sets
  *
- * @constant {Object} setData
+ * @constant {object} setData
  * @property {Function} value - Set constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validSets](testValues.md#validSets)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validSets
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -319,9 +319,9 @@ export const setData = {
 /**
  * A data set for testing Strings
  *
- * @constant {Object} stringData
+ * @constant {object} stringData
  * @property {Function} value - String constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validStrings](testValues.md#validStrings)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validStrings
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -339,9 +339,9 @@ export const stringData = {
 /**
  * A data set for testing Symbols
  *
- * @constant {Object} symbolData
+ * @constant {object} symbolData
  * @property {Function} value - Symbol constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validSymbols](testValues.md#validSymbols)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validSymbols
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -359,9 +359,9 @@ export const symbolData = {
 /**
  * A data set for testing WeakMaps
  *
- * @constant {Object} weakMapData
+ * @constant {object} weakMapData
  * @property {Function} value - WeakMap constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validWeakMaps](testValues.md#validWeakMaps)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validWeakMaps
  * @property {Array} coerceTrue - Values that can be coerced to this type
@@ -379,9 +379,9 @@ export const weakMapData = {
 /**
  * A data set for testing WeakSets
  *
- * @constant {Object} weakSetData
+ * @constant {object} weakSetData
  * @property {Function} value - WeakSet constructor
- * @property {String} name - The name used in type-enforcer namespaces for this type
+ * @property {string} name - The name used in type-enforcer namespaces for this type
  * @property {Array} true - [validWeakSets](testValues.md#validWeakSets)
  * @property {Array} false - [testValues](testValues.md#testValues) minus validWeakSets
  * @property {Array} coerceTrue - Values that can be coerced to this type

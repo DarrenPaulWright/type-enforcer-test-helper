@@ -2,13 +2,13 @@ import { assert } from 'type-enforcer';
 import multiTest from './multiTest.js';
 
 /**
- * Test a check function (isArray, isBoolean, etc.)
+ * Test a type-enforcer check function (isArray, isBoolean, etc.).
  *
  * @function testCheck
  *
- * @arg {Object} data - A data object (arrayData, booleanData, etc.)
- * @arg {Function} check - The function to test
- * @arg {Object} is - An object that includes this function
+ * @param {object} data - A data object (arrayData, booleanData, etc.).
+ * @param {Function} check - The function to test.
+ * @param {object} is - An object that includes this function.
  */
 export default function(data, check, is) {
 	it('should exist in the exported "is" object', () => {
