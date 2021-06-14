@@ -12,14 +12,14 @@
 <br><a name="testCheck"></a>
 
 ## testCheck(data, check, is)
-> Test a check function (isArray, isBoolean, etc.)
+> Test a type-enforcer check function (isArray, isBoolean, etc.).
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>Object</code> | A data object (arrayData, booleanData, etc.) |
-| check | <code>function</code> | The function to test |
-| is | <code>Object</code> | An object that includes this function |
+| data | <code>object</code> | A data object (arrayData, booleanData, etc.). |
+| check | <code>function</code> | The function to test. |
+| is | <code>object</code> | An object that includes this function. |
 
 
 [npm]: https://img.shields.io/npm/v/type-enforcer-test-helper.svg

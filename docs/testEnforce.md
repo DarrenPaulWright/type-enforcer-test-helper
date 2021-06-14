@@ -12,15 +12,15 @@
 <br><a name="testEnforce"></a>
 
 ## testEnforce(data, enforcer, enforce, coercer)
-> Test an enforce function (enforceArray, enforceBoolean, etc.)
+> Test an enforce function (enforceArray, enforceBoolean, etc.).
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| data | <code>Object</code> | A data object (arrayData, booleanData, etc.) |
-| enforcer | <code>function</code> | The function to test |
-| enforce | <code>Object</code> | An object that includes this function |
-| coercer | <code>function</code> | A function that does a coercion just like this function |
+| data | <code>object</code> | A data object (arrayData, booleanData, etc.). |
+| enforcer | <code>function</code> | The function to test. |
+| enforce | <code>object</code> | An object that includes this function. |
+| coercer | <code>function</code> | A function that does a coercion just like this function. |
 
 
 [npm]: https://img.shields.io/npm/v/type-enforcer-test-helper.svg

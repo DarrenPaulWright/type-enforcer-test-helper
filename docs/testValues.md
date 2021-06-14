@@ -120,7 +120,7 @@
 <br><a name="validNots"></a>
 
 ## validNots : <code>Array</code>
-> undefined, null, and NaN
+> Undefined, null, and NaN
 
 
 [npm]: https://img.shields.io/npm/v/type-enforcer-test-helper.svg
