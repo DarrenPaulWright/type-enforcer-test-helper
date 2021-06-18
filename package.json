@@ -62,10 +62,10 @@
 		"docs:data": "exec-each --out docs/{basefile}.md src/data/*.js jsdoc2md -- {path} -t node_modules/dmd-readable/docs.hbs --plugin dmd-readable",
 		"docs": "run-p docs:*"
 	},
-	"peerDependencies": {
-		"display-value": ">=1.0.0",
-		"object-agent": ">=1.0.0",
-		"type-enforcer": ">=1.0.0"
+	"dependencies": {
+		"display-value": "^1.8.5",
+		"object-agent": "^1.5.0",
+		"type-enforcer": "^1.2.1"
 	},
 	"devDependencies": {
 		"dmd-readable": "^1.2.4",
