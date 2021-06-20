@@ -164,25 +164,30 @@ export default function(settings, thisMethod, method) {
 					it('should be able to be set to other', () => {
 						const testConstructor = new TestConstructor();
 
-						testConstructor[methodName](undefined);
+						if (!hasBefore && !hasGet) {
+							testConstructor[methodName](undefined);
 
-						if (!hasGet && !hasBefore) {
 							assert.equal(testConstructor[methodName](), undefined);
 						}
 						else if (hasSet && init) {
 							testSet = '';
+
+							testConstructor[methodName](undefined);
 
 							assert.equal(testSet, undefined);
 						}
 						else if (hasBefore && !hasGet && init) {
 							testBefore = '';
 
+							testConstructor[methodName](undefined);
 							testConstructor[methodName](testItem);
 
 							assert.equal(testBefore, undefined);
 						}
 						else if (hasBefore && hasGet && init) {
 							testBefore = '';
+
+							testConstructor[methodName](undefined);
 
 							assert.equal(testBefore, init);
 						}
