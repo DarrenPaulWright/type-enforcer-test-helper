@@ -18,6 +18,7 @@
 		"url": "https://github.com/DarrenPaulWright/type-enforcer-test-helper/issues"
 	},
 	"main": "index.js",
+	"type": "module",
 	"files": [
 		"/src"
 	],
