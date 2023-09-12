@@ -1,6 +1,6 @@
 {
 	"name": "type-enforcer-test-helper",
-	"version": "1.3.9",
+	"version": "1.3.10",
 	"description": "Test data and helper functions for type-enforcer and addons",
 	"keywords": [],
 	"license": "MIT",
