@@ -35,8 +35,8 @@ const getSymbol = Symbol();
  * @param {Array} settings.true - An array of values that are valid for this method.
  * @param {Array} settings.false - An array of values that are NOT valid for this method.
  * @param {Array|false} [settings.coerce] - An array of objects with values that can be coerced by this method.
- * @param {*} settings.coerce[].value - The value to be coerced.
- * @param {*} settings.coerce[].coerced - The expected result of coercion.
+ * @param {unknown} settings.coerce[].value - The value to be coerced.
+ * @param {unknown} settings.coerce[].coerced - The expected result of coercion.
  * @param {Array} settings.coerceTrue - Alternatively, an array of values that are coercible by this method.
  * @param {Function} thisMethod - The function to test.
  * @param {object} method - An object that includes this function.
@@ -367,7 +367,7 @@ export default function(settings, thisMethod, method) {
 		runTests(TestConstructor2, settings.true[0], settings.true[1], settings.coerce || []);
 
 		settings.false.forEach((falseValue) => {
-			it(`should return ${displayValue(settings.true[0])} after attempting to set to ${displayValue(falseValue)}`, () => {
+			it(`should return ${ displayValue(settings.true[0]) } after attempting to set to ${ displayValue(falseValue) }`, () => {
 				const testConstructor = new TestConstructor2();
 
 				testConstructor.testMethod(falseValue);
@@ -406,7 +406,7 @@ export default function(settings, thisMethod, method) {
 			});
 
 			settings.coerceTrue.forEach((value) => {
-				it(`should return coerced ${displayValue(value)} after attempting to set to ${displayValue(value)}`, () => {
+				it(`should return coerced ${ displayValue(value) } after attempting to set to ${ displayValue(value) }`, () => {
 					const testConstructor = new TestConstructor2();
 
 					testConstructor.testMethod(value);
@@ -426,7 +426,7 @@ export default function(settings, thisMethod, method) {
 			});
 
 			settings.coerceTrue.forEach((value) => {
-				it(`should return coerced ${displayValue(value)} after attempting to set to ${displayValue(value)}`, () => {
+				it(`should return coerced ${ displayValue(value) } after attempting to set to ${ displayValue(value) }`, () => {
 					const testConstructor = new TestConstructor2();
 
 					testConstructor.testMethod(value);

@@ -12,7 +12,15 @@ import TestClass from './TestClass.js';
  * @constant {Array} validArrays
  */
 const arrayReference = Array(3);
-export const validArrays = [[1], [2], [], new Array(), Array(), arrayReference];
+export const validArrays = [
+	[1],
+	[2],
+	[],
+	new Array(),
+	new Array(12),
+	Array(),
+	arrayReference
+];
 
 /**
  * Booleans instantiated in different ways or with different values.
@@ -20,7 +28,13 @@ export const validArrays = [[1], [2], [], new Array(), Array(), arrayReference];
  * @constant {Array} validBooleans
  */
 const booleanReference = Boolean();
-export const validBooleans = [true, false, new Boolean(true), booleanReference]; // eslint-disable-line no-new-wrappers
+export const validBooleans = [
+	true,
+	false,
+	new Boolean(true), // eslint-disable-line no-new-wrappers
+	Boolean(1),
+	booleanReference
+];
 
 /**
  * Dates instantiated in different ways or with different values.
@@ -28,7 +42,10 @@ export const validBooleans = [true, false, new Boolean(true), booleanReference];
  * @constant {Array} validDates
  */
 const dateReference = new Date();
-export const validDates = [dateReference, new Date('01/15/2010')];
+export const validDates = [
+	dateReference,
+	new Date('01/15/2010')
+];
 
 /**
  * Functions instantiated in different ways.
@@ -37,13 +54,15 @@ export const validDates = [dateReference, new Date('01/15/2010')];
  */
 const namedFunctionExpression = function() {
 };
-export const validFunctions = [namedFunctionExpression,
+export const validFunctions = [
+	namedFunctionExpression,
 	function namedFunctionDeclaration() {
 	},
 	function() {
 	},
 	() => {
-	}];
+	}
+];
 
 /**
  * Different instances of TestClass with different values.
@@ -51,9 +70,11 @@ export const validFunctions = [namedFunctionExpression,
  * @constant {Array} validInstances
  */
 const classReference = new TestClass(1);
-export const validInstances = [classReference,
+export const validInstances = [
+	classReference,
 	new TestClass(1),
-	new TestClass(2)];
+	new TestClass(2)
+];
 
 /**
  * Integers instantiated in different ways or with different values.
@@ -61,7 +82,12 @@ export const validInstances = [classReference,
  * @constant {Array} validIntegers
  */
 const integerReference = Number(11);
-export const validIntegers = [1, 5, new Number(42), integerReference]; // eslint-disable-line no-new-wrappers
+export const validIntegers = [
+	1,
+	5,
+	new Number(42), // eslint-disable-line no-new-wrappers
+	integerReference
+];
 
 /**
  * Floats instantiated in different ways or with different values.
@@ -69,12 +95,14 @@ export const validIntegers = [1, 5, new Number(42), integerReference]; // eslint
  * @constant {Array} validFloats
  */
 const floatReference = Number(11.3);
-export const validFloats = [1.3,
+export const validFloats = [
+	1.3,
 	2.5,
 	-10.00000001,
 	3.14159,
 	new Number(42.2), // eslint-disable-line no-new-wrappers
-	floatReference];
+	floatReference
+];
 
 /**
  * Infinity and -Infinity
@@ -82,7 +110,10 @@ export const validFloats = [1.3,
  * @constant {Array} validInfinities
  */
 const infinityReference = Infinity;
-export const validInfinities = [infinityReference, -Infinity];
+export const validInfinities = [
+	infinityReference,
+	-Infinity
+];
 
 /**
  * An empty Map and a Map with data.
@@ -90,7 +121,10 @@ export const validInfinities = [infinityReference, -Infinity];
  * @constant {Array} validMaps
  */
 const mapReference = new Map().set('test', 12);
-export const validMaps = [new Map(), mapReference];
+export const validMaps = [
+	new Map(),
+	mapReference
+];
 
 /**
  * Plain objects instantiated in different ways or with different values.
@@ -98,7 +132,12 @@ export const validMaps = [new Map(), mapReference];
  * @constant {Array} validObjects
  */
 const objectReference = Object();
-export const validObjects = [{}, { test1: 1 }, new Object(), objectReference]; // eslint-disable-line no-new-object
+export const validObjects = [
+	{},
+	{ test1: 1 },
+	new Object(), // eslint-disable-line no-new-object
+	objectReference
+];
 
 /**
  * A normal Promise and Promise.all.
@@ -118,7 +157,11 @@ export const validPromises = [
  * @constant {Array} validRegExps
  */
 const regExpReference = RegExp(); // eslint-disable-line require-unicode-regexp
-export const validRegExps = [/asdf/g, new RegExp('test 2'), regExpReference]; // eslint-disable-line require-unicode-regexp
+export const validRegExps = [
+	/asdf/g, // eslint-disable-line require-unicode-regexp
+	new RegExp('test 2'), // eslint-disable-line require-unicode-regexp
+	regExpReference
+];
 
 /**
  * An empty Set and a Set with data.
@@ -126,7 +169,10 @@ export const validRegExps = [/asdf/g, new RegExp('test 2'), regExpReference]; //
  * @constant {Array} validSets
  */
 const setReference = new Set([1, 2]);
-export const validSets = [new Set(), setReference];
+export const validSets = [
+	new Set(),
+	setReference
+];
 
 /**
  * Strings instantiated in different ways or with different values.
@@ -134,7 +180,12 @@ export const validSets = [new Set(), setReference];
  * @constant {Array} validStrings
  */
 const stringReference = String('test3');
-export const validStrings = ['test', '', new String('test2'), stringReference]; // eslint-disable-line no-new-wrappers
+export const validStrings = [
+	'test',
+	'',
+	new String('test2'), // eslint-disable-line no-new-wrappers
+	stringReference
+];
 
 /**
  * A Symbol with a label and one without.
@@ -150,7 +201,10 @@ export const validSymbols = [Symbol(), symbolReference];
  * @constant {Array} validWeakMaps
  */
 const weakMapReference = new WeakMap().set({}, 12);
-export const validWeakMaps = [new WeakMap(), weakMapReference];
+export const validWeakMaps = [
+	new WeakMap(),
+	weakMapReference
+];
 
 /**
  * An empty WeakSet and a WeakSet with data.

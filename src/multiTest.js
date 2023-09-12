@@ -7,13 +7,13 @@ const getMessage = (settings, assertion) => {
 		return settings.message;
 	}
 	if (assertion === 'true') {
-		return (input) => `should return true for ${displayValue(input)}`;
+		return (input) => `should return true for ${ displayValue(input) }`;
 	}
 	if (assertion === 'false') {
-		return (input) => `should return false for ${displayValue(input)}`;
+		return (input) => `should return false for ${ displayValue(input) }`;
 	}
 
-	return (input, output) => `should return ${displayValue(output)} when set to ${input}`;
+	return (input, output) => `should return ${ displayValue(output) } when set to ${ input }`;
 };
 
 /**
@@ -29,7 +29,7 @@ const getMessage = (settings, assertion) => {
  * @param {Function}     [settings.message] - Provides two or three params, the input value(s) and the expected output value. Must return a string. It is recommended to use the display-value library on values for readability.
  * @param {string}       [settings.inputKey] - If values is an array of objects, this specifies which key to get the input value from.
  * @param {string}       [settings.outputKey] - If values is an array of objects, this specifies which key to get the expected output value from.
- * @param {*}            [settings.output] - The expected output value of all tests.
+ * @param {unknown}            [settings.output] - The expected output value of all tests.
  * @param {boolean}      [settings.eachPair=false] - Values must be an array, runs tests on every combination of two items from values.
  * @param {string}       [settings.assertion='equal'] - The type-enforcer assert function to run against all tests.
  */
@@ -47,7 +47,7 @@ export default (settings) => {
 	}
 
 	const buildDoubleMessage = settings.message || ((input1, input2, output) => {
-		return `should return ${displayValue(output)} when ${displayValue(input1)} and ${displayValue(input2)} are provided`;
+		return `should return ${ displayValue(output) } when ${ displayValue(input1) } and ${ displayValue(input2) } are provided`;
 	});
 
 	const testSingleValue = (input, output, value) => {
