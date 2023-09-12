@@ -21,7 +21,7 @@
 
 | Param | Type | Description |
 | --- | --- | --- |
-| value | <code>\*</code> | Adds a property "value" to an instance of TestClass, set to the value provided. |
+| value | <code>unknown</code> | Adds a property "value" to an instance of TestClass, set to the value provided. |
 
 
 [npm]: https://img.shields.io/npm/v/type-enforcer-test-helper.svg

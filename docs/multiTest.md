@@ -25,7 +25,7 @@
 | [settings.message] | <code>function</code> |  | Provides two or three params, the input value(s) and the expected output value. Must return a string. It is recommended to use the display-value library on values for readability. |
 | [settings.inputKey] | <code>string</code> |  | If values is an array of objects, this specifies which key to get the input value from. |
 | [settings.outputKey] | <code>string</code> |  | If values is an array of objects, this specifies which key to get the expected output value from. |
-| [settings.output] | <code>\*</code> |  | The expected output value of all tests. |
+| [settings.output] | <code>unknown</code> |  | The expected output value of all tests. |
 | [settings.eachPair] | <code>boolean</code> | <code>false</code> | Values must be an array, runs tests on every combination of two items from values. |
 | [settings.assertion] | <code>string</code> | <code>&quot;&#x27;equal&#x27;&quot;</code> | The type-enforcer assert function to run against all tests. |
 

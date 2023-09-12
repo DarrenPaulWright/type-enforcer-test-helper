@@ -24,8 +24,8 @@
 | settings.true | <code>Array</code> | An array of values that are valid for this method. |
 | settings.false | <code>Array</code> | An array of values that are NOT valid for this method. |
 | [settings.coerce] | <code>Array</code>, <code>false</code> | An array of objects with values that can be coerced by this method. |
-| settings.coerce[].value | <code>\*</code> | The value to be coerced. |
-| settings.coerce[].coerced | <code>\*</code> | The expected result of coercion. |
+| settings.coerce[].value | <code>unknown</code> | The value to be coerced. |
+| settings.coerce[].coerced | <code>unknown</code> | The expected result of coercion. |
 | settings.coerceTrue | <code>Array</code> | Alternatively, an array of values that are coercible by this method. |
 | thisMethod | <code>function</code> | The function to test. |
 | method | <code>object</code> | An object that includes this function. |
