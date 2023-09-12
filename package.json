@@ -54,7 +54,7 @@
 		"postpublish": "git push --follow-tags",
 		"pre-clean": "rm -rf node_modules && del /f package-lock.json",
 		"clean": "npm run pre-clean && npm install && npm audit fix",
-		"update": "ncu -u --dep prod && git diff --quiet || npm install && npm audit fix",
+		"update": "ncu -u && git diff --quiet || npm install && npm audit fix",
 		"update-clean": "npm run pre-clean && npm run update",
 		"update-commit": "npm run update && npm test && git add --all && git diff HEAD --quiet || git commit -m \"Updating dependencies\"",
 		"update-patch": "npm run update && npm test && git add --all && git diff HEAD --quiet || git commit -m \"Updating dependencies\" && npm version patch",
@@ -64,15 +64,14 @@
 		"docs": "run-p docs:*"
 	},
 	"dependencies": {
-		"display-value": "^1.8.5",
-		"object-agent": "^1.5.0",
-		"type-enforcer": "^1.2.1"
+		"display-value": "^2.2.0",
+		"object-agent": "^1.6.0",
+		"type-enforcer": "^1.2.4"
 	},
 	"devDependencies": {
 		"dmd-readable": "^1.2.4",
 		"exec-each": "0.0.3",
-		"jsdoc-to-markdown": "^7.0.1",
-		"karma-webpack-bundle": "^1.1.0",
+		"jsdoc-to-markdown": "^8.0.0",
 		"npm-run-all": "^4.1.5"
 	}
 }
