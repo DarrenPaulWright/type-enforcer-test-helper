@@ -1,3 +1,4 @@
+import { describe, it } from 'hippogriff';
 import { assert } from 'type-enforcer';
 import {
 	arrayData,

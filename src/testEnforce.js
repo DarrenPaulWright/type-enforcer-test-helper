@@ -1,4 +1,5 @@
 import displayValue from 'display-value';
+import { describe, it } from 'hippogriff';
 import { assert } from 'type-enforcer';
 import TestClass from './data/TestClass.js';
 import { testTypes } from './data/testData.js';
@@ -19,7 +20,7 @@ export default function(data, enforcer, enforce, coercer) {
 		assert.equal(enforcer, enforce[data.name]);
 	});
 
-	it(`should return the setter value when a ${data.name} is provided`, () => {
+	it(`should return the setter value when a ${ data.name } is provided`, () => {
 		let result = null;
 		const value1 = data.true[0];
 		const value2 = data.true[1];
@@ -52,7 +53,7 @@ export default function(data, enforcer, enforce, coercer) {
 			};
 		}),
 		message(input) {
-			return `should NOT return a coerced ${displayValue(input)} when coerce is false`;
+			return `should NOT return a coerced ${ displayValue(input) } when coerce is false`;
 		},
 		test(value) {
 			return enforce[data.name](value, value, false);
@@ -72,7 +73,7 @@ export default function(data, enforcer, enforce, coercer) {
 					};
 				}),
 				message(input) {
-					return `should return a coerced ${displayValue(input)} when coerce is true`;
+					return `should return a coerced ${ displayValue(input) } when coerce is true`;
 				},
 				test(value) {
 					return enforce[data.name](value, value, true);
@@ -86,7 +87,7 @@ export default function(data, enforcer, enforce, coercer) {
 		multiTest({
 			values: data.coerceFalse,
 			message(input) {
-				return `should return the alt value when ${displayValue(input)} is provided and coerce is true`;
+				return `should return the alt value when ${ displayValue(input) } is provided and coerce is true`;
 			},
 			test(value) {
 				return enforce[data.name](value, 'testAlt', true);
@@ -100,7 +101,7 @@ export default function(data, enforcer, enforce, coercer) {
 		if (typesData.name && !([typesData.name].concat(typesData.skip)
 			.includes(data.name))) {
 			typesData.true.forEach((testItem) => {
-				it(`should return the default value when ${displayValue(testItem)} is provided`, () => {
+				it(`should return the default value when ${ displayValue(testItem) } is provided`, () => {
 					if (data.extraArg) {
 						assert.equal(enforce[data.name](testItem, data.extraArg, data.true[0]), data.true[0]);
 					}

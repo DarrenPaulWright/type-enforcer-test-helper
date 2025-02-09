@@ -85,6 +85,7 @@ const integerReference = Number(11);
 export const validIntegers = [
 	1,
 	5,
+	3773586621232700,
 	new Number(42), // eslint-disable-line no-new-wrappers
 	integerReference
 ];
@@ -148,7 +149,7 @@ const promiseReference = new Promise((resolve) => resolve());
 export const validPromises = [
 	promiseReference,
 	new Promise((resolve) => resolve()),
-	Promise.all(promiseReference)
+	Promise.all([promiseReference])
 ];
 
 /**

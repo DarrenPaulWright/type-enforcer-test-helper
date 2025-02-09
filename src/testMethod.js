@@ -1,4 +1,5 @@
 import displayValue from 'display-value';
+import { beforeEach, describe, it } from 'hippogriff';
 import { powerset } from 'object-agent';
 import { assert } from 'type-enforcer';
 

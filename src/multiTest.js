@@ -1,6 +1,7 @@
 import displayValue from 'display-value';
 import { forOwn, mix } from 'object-agent';
 import { assert } from 'type-enforcer';
+import { it } from 'hippogriff';
 
 const getMessage = (settings, assertion) => {
 	if (settings.message) {
