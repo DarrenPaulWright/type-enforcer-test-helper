@@ -23,8 +23,8 @@
 	"types": "dist/types/index.d.ts",
 	"files": [
 		"/dist",
-		"!/dist/**/*.{test|bench}.js",
-		"!/dist/**/*.{test|bench}.d.ts"
+		"!/dist/**/*.{test,bench}.js",
+		"!/dist/**/*.{test,bench}.d.ts"
 	],
 	"scripts": {
 		"test": "tsc && hippogriff",
