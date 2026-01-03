@@ -46,7 +46,7 @@
 		"type-enforcer": "^1.2.7"
 	},
 	"peerDependencies": {
-		"hippogriff": "^0.2.0"
+		"hippogriff": ">=0.3.0"
 	},
 	"devDependencies": {
 		"@types/node": "^25.0.3",
